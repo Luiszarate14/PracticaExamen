@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_05" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="Modelo.Bus">
+    <void property="cantLlantas">
+     <int>4</int>
+    </void>
+    <void property="cantidadPasajero">
+     <int>4</int>
+    </void>
+    <void property="peso">
+     <int>4</int>
+    </void>
+    <void property="placa">
+     <string>121212</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Modelo.Bus">
+    <void property="cantLlantas">
+     <int>3</int>
+    </void>
+    <void property="cantidadPasajero">
+     <int>3</int>
+    </void>
+    <void property="peso">
+     <int>3</int>
+    </void>
+    <void property="placa">
+     <string>131313</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Modelo.Bus">
+    <void property="cantLlantas">
+     <int>4</int>
+    </void>
+    <void property="cantidadPasajero">
+     <int>4</int>
+    </void>
+    <void property="peso">
+     <int>4</int>
+    </void>
+    <void property="placa">
+     <string>111111</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Modelo.Moto">
+    <void property="cantLlantas">
+     <int>2</int>
+    </void>
+    <void property="cantidadPasajero">
+     <int>2</int>
+    </void>
+    <void property="peso">
+     <int>8</int>
+    </void>
+    <void property="placa">
+     <string>131313</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Modelo.Automovil">
+    <void property="cantLlantas">
+     <int>4</int>
+    </void>
+    <void property="cantidadPasajero">
+     <int>4</int>
+    </void>
+    <void property="peso">
+     <int>4</int>
+    </void>
+    <void property="placa">
+     <string>AB1234</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Modelo.Bus">
+    <void property="cantLlantas">
+     <int>4</int>
+    </void>
+    <void property="cantidadPasajero">
+     <int>4</int>
+    </void>
+    <void property="peso">
+     <int>4</int>
+    </void>
+    <void property="placa">
+     <string>ab1234</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Modelo.Moto">
+    <void property="cantLlantas">
+     <int>3</int>
+    </void>
+    <void property="cantidadPasajero">
+     <int>3</int>
+    </void>
+    <void property="peso">
+     <int>3</int>
+    </void>
+    <void property="placa">
+     <string>Ob1234</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

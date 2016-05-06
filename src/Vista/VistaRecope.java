@@ -28,7 +28,6 @@ public class VistaRecope extends javax.swing.JFrame {
         group.add(jrBus);
         group.add(jrMoto);
         jrAuto.setSelected(true);
-        
         ControladorRecope controladorPrincipal= new ControladorRecope(this);
         jButton1.addActionListener(controladorPrincipal);
         jButton2.addActionListener(controladorPrincipal);
@@ -53,21 +52,16 @@ public class VistaRecope extends javax.swing.JFrame {
         jtPasajeros.setText("");
         jtPeso.setText("");
         jtPlaca.setText("");
-        
     }
-    
     public void setJlCiclos(String jlCiclos) {
         this.jlCiclos.setText(jlCiclos);
     }
-
     public String getJtCantGasolina() {
         return jtGasolinaDisponible.getText();
     }
-
     public String getJtCantGasolinera() {
         return jtCantGasolinera.getText();
     }
-    
     public String getJtCantLlantas() {
         return jtCantLlantas.getText();
     }
@@ -82,8 +76,7 @@ public class VistaRecope extends javax.swing.JFrame {
     }
     public void setJlMensajes(String jlMensajes) {
         this.jlMensajes.setText(jlMensajes);
-    }
-    
+    }   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,6 +110,11 @@ public class VistaRecope extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel2.setText("Cantidad LLantas");
 
@@ -277,6 +275,10 @@ public class VistaRecope extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+    }//GEN-LAST:event_formWindowClosing
 
     
     

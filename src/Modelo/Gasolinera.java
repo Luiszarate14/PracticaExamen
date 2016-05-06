@@ -11,15 +11,16 @@ package Modelo;
  * @author user
  */
 public class Gasolinera {
-    int cantidadGas=0;
-    int cantidadGasolina=0;
     private Recope recope;
     public Gasolinera() {
        recope= Recope.getInstace();
     }
-    public int darGasolinaVehiculo(Vehiculo vehiculo) throws Exception{//regres a recope la cantidad de gasolina
-        
-       return recope.getCantidadGasolina(vehiculo.gastoGasolina());///y se comprueba si se vendio
+    public boolean darGasolinaVehiculo(Vehiculo vehiculo) throws Exception{//regres a recope la cantidad de gasolina  
+        boolean dioGas=false;
+        if(recope.getCantidadGasolina()-vehiculo.gastoGasolina()>=0){
+            recope.setGasolinaGasto(vehiculo.gastoGasolina());//hace la comprobacion si devuelve un numero q sepueda restar
+            dioGas=true;
+        }
+        return dioGas;
     }
-    //si es mayor que 0 significa que se puede vender a ese vehiculo
 }

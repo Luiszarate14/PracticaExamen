@@ -12,5 +12,4 @@ package Modelo;
  */
 public interface Vehiculo  {
     int gastoGasolina();
-    
 }

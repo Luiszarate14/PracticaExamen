@@ -11,27 +11,24 @@ package Modelo;
  * @author user
  */
 public class Recope {
-    private int CANTIDAD_GASO=0;
-    private static Recope recope= new Recope();
+    private int CANTIDAD_GASO=0;//la gasolina
+    private static Recope recope= new Recope();//  singleton  //
     private Recope() { 
-        
+        /**
+        *
+        *
+        **/
+    }   
+    public int getCantidadGasolina()throws Exception{ ///el error radica en el hecho de que hay dos restas
+        return CANTIDAD_GASO;//true hay gasolinaif()
     }
-    
-    public int getCantidadGasolina(int cantidad)throws Exception{
-        System.out.println("recope cantidad: "+ CANTIDAD_GASO);
-        if(CANTIDAD_GASO>0&&cantidad<CANTIDAD_GASO){
-            CANTIDAD_GASO=CANTIDAD_GASO-cantidad;
-        }
-        else if(CANTIDAD_GASO==0){
-            CANTIDAD_GASO=CANTIDAD_GASO-cantidad;
-        }
-        return CANTIDAD_GASO=CANTIDAD_GASO-cantidad;
+    public void setLaCantidadGasolina(int gasto){
+        CANTIDAD_GASO=gasto;
     }
-    
-    public static Recope getInstace(){
+    public void setGasolinaGasto(int gasto){
+        CANTIDAD_GASO=CANTIDAD_GASO-gasto;
+    }
+    public static Recope getInstace(){//recope.setGasolina
         return recope;
-    }
-    public void setGasolina(int cant){
-        CANTIDAD_GASO=cant;
     }
 }

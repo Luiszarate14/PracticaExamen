@@ -58,6 +58,8 @@ public class Bus implements  Vehiculo{
     
     @Override
     public int gastoGasolina() {
+        System.out.println("gasto bus: "+((cantLlantas*(peso*5))-cantidadPasajero)/10);
         return ((cantLlantas*(peso*5))-cantidadPasajero)/10;
+        
     }
 }

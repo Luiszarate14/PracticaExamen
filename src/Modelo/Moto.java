@@ -22,6 +22,10 @@ public class Moto implements Vehiculo {
         this.cantidadPasajero = cantidadPasajero;
     }
 
+    public Moto() {
+    }
+    
+
     public String getPlaca() {
         return placa;
     }
@@ -55,6 +59,6 @@ public class Moto implements Vehiculo {
     }
     @Override
     public int gastoGasolina() {
-        return (cantLlantas*peso)-Integer.parseInt(placa,6);
+        return (cantLlantas*peso)-Integer.parseInt(placa.substring(5));
     }
 }

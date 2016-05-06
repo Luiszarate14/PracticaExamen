@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Bd_Gasolineras {
     ArrayList<Gasolinera> arregloGasolinera;
-    Recope recope;
+//    Recope recope;
 
     public Bd_Gasolineras() {
         arregloGasolinera= new ArrayList<Gasolinera>();
@@ -27,8 +27,8 @@ public class Bd_Gasolineras {
     public int tamanioGasol(){
         return arregloGasolinera.size();
     }
-    public boolean recorrerGasolinera(Vehiculo vehiculo,int posicion) throws Exception{
-        return arregloGasolinera.get(posicion).darGasolinaVehiculo(vehiculo)>=0;
+    public boolean recorrerGasolinera(Vehiculo vehiculo,int posicionGaso) throws Exception{
+        //envia el gasto del vehiculo y a la vez lo resta si se puede o devuele false si no resto
+        return arregloGasolinera.get(posicionGaso).darGasolinaVehiculo(vehiculo);//esto dice que si gasto 
     }
-    
 }

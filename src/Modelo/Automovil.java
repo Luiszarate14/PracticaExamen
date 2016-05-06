@@ -20,6 +20,10 @@ public class Automovil implements Vehiculo {
         this.cantLlantas = cantLlantas;
         this.cantidadPasajero = cantidadPasajero;
     }
+
+    public Automovil() {
+    }
+    
     
     public String getPlaca() {
         return placa;
@@ -55,12 +59,13 @@ public class Automovil implements Vehiculo {
     @Override
     public int gastoGasolina() {
        int gastoAutomovil;
-       if(Integer.parseInt(placa,6)==0){
+       if(Integer.parseInt(placa.substring(5))==0){
            gastoAutomovil=cantLlantas*(peso*2);
        }
        else{
            gastoAutomovil=cantLlantas*(peso*3);
        }
+        System.out.println("gasto de vehiculo: "+gastoAutomovil);
            return gastoAutomovil;
     }
 

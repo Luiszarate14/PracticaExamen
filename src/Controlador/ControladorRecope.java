@@ -13,8 +13,12 @@ import Modelo.Recope;
 import Vista.VistaRecope;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utilidades.AyudanteOS;
+import utilidades.Escritor;
+import utilidades.Lector;
 
 /**
  *
@@ -26,29 +30,44 @@ public class ControladorRecope implements ActionListener{
     private Gasolinera gasolinera;
     private Bd_Gasolineras bdGasolinera;
     private Recope singleton;
+    private AyudanteOS ayudaos;
+    private Escritor escritor;
+    private Lector lector;
     int i=0;
     int y=0;
+    private ExpresionesRegulares expresiones;
     public ControladorRecope(VistaRecope recope) {
         this.bd_Vehiculo= new Bd_Vehiculo();
         this.vistaRecope=recope;
         bdGasolinera= new Bd_Gasolineras();
         singleton= Recope.getInstace();
-        
+        ayudaos= new AyudanteOS();
+        escritor=  new Escritor();
+        lector= new Lector();
+        expresiones= new ExpresionesRegulares();
+        bd_Vehiculo.setVehiculos((ArrayList)lector.read_xml("vehiculos.xml"));
     }
     @Override
     public void actionPerformed(ActionEvent e) {//falta hacer metodo de comprobaciones
+        
         if(e.getActionCommand().equals("Agregar")){
-            bd_Vehiculo.guardarvehiculo(vistaRecope.regresarNombre(),vistaRecope.getJtPlaca(),Integer.parseInt(vistaRecope.getJtCantLlantas()),
-                    Integer.parseInt(vistaRecope.getJtPasajeros()),Integer.parseInt(vistaRecope.getJtPeso()));
-            vistaRecope.setJlMensajes("Se agrego con exito");
-            vistaRecope.limpiar();
-            
+            System.out.println("expresiones: "+expresiones.validarPlaca(vistaRecope.getJtPlaca()));
+            if(expresiones.validarPlaca(vistaRecope.getJtPlaca())){
+                bd_Vehiculo.guardarvehiculo(vistaRecope.regresarNombre(),vistaRecope.getJtPlaca(),Integer.parseInt(vistaRecope.getJtCantLlantas()),
+                        Integer.parseInt(vistaRecope.getJtPasajeros()),Integer.parseInt(vistaRecope.getJtPeso()));
+                vistaRecope.setJlMensajes("Se agrego con exito");
+                vistaRecope.limpiar();
+                escritor.with_obj_in_file_xml("vehiculos.xml", bd_Vehiculo.arregloVehiculo());
+                System.out.println("-.- :" + bd_Vehiculo.tamanioArreglo());
+            }
+            else
+                vistaRecope.setJlMensajes("Esta placa es invalida");
         }
         else if(e.getActionCommand().equals("Simulacion")){
             
             if(bd_Vehiculo.tamanioArreglo()>0){// para que exista al menos un vehiculo
                 try {
-                    singleton.setGasolina(Integer.parseInt(vistaRecope.getJtCantGasolina()));//guardo la gasolina en RECOPE
+                    singleton.setLaCantidadGasolina(Integer.parseInt(vistaRecope.getJtCantGasolina()));//guardo la gasolina en RECOPE
                 } catch (Exception ex) {
                     System.out.println("no guardo la gasolina");//esta guaradando un vector vacio sin referencia
                 }
@@ -63,43 +82,35 @@ public class ControladorRecope implements ActionListener{
                 } catch (Exception ex) {
                     System.out.println("ERROR DE CICLOS");
                 }
-                
             }
             else{
                 vistaRecope.setJlCiclos("Ingrese al menos un vehiculo");
-            }
-            
-            
+            }  
         }
     }
-    
      public String cantidadDeCiclos() throws Exception{
-         
          int ciclos =0;
          boolean noGastoGaso=true;
          while(noGastoGaso){
             for(i=0;i<bd_Vehiculo.tamanioArreglo()&& noGastoGaso;i++){//primer for de los vehiculos
-               for(;y<bdGasolinera.tamanioGasol();y++) { //esto es un array circular de gasolineras
-                   System.out.println(" el velor de i es :"+i);
-                   System.out.println("este es y "+ y);
-                   System.out.println("boolean"+bdGasolinera.recorrerGasolinera(bd_Vehiculo.regresaVehiculo(i),y));
-                   if(bdGasolinera.recorrerGasolinera(bd_Vehiculo.regresaVehiculo(i),y)){//posicion de donde gasolinera
-                                                                                        //devuelve si dio o no gasolina 
-                      y=bdGasolinera.tamanioGasol()+1;
-                                             
+                System.out.println("ANTES DEEE");
+                System.out.println("tamanio arreglo vehiculo"+ bd_Vehiculo.tamanioArreglo());
+//System.out.println("aqui: "+bdGasolinera.recorrerGasolinera(bd_Vehiculo.regresaVehiculo(i),y));///revisar error de entrada
+                //error arriba revisar devuelve false- deberia devolver true;
+                
+               if(bdGasolinera.recorrerGasolinera(bd_Vehiculo.regresaVehiculo(i), y)){//vehiculo y posicion
+                       //metodo anterior verifica q traiga el primer vehiculo y la gasolinera para q 
+                       //se reste respectivamente
+                       System.out.println("se ha dado la gasolina");
+                       y=y%bdGasolinera.tamanioGasol();
+                        System.out.println("tamanio gasolinera:"+y);
                    }
                    else{
-                       System.out.println("debe de salir");
-                      y=bdGasolinera.tamanioGasol()+1;
+                       System.out.println("La gasolina es insuficiente");
+                       noGastoGaso=false;
                    }
-                  
-               }
-               //noGastoGaso=true;
-               y=y%bdGasolinera.tamanioGasol();
-               System.out.println("tamanio gasolinera"+y);
                ciclos++;
-                //System.out.println("cantidad de recope: "+singleton.getCantidadGasolina(0));
-            }
+            }//fin de ciclos vehiculos
             
             
         }//fin de while
